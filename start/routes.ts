@@ -20,6 +20,28 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
+/* Here the context is distructured, if it wasn't, we would have : 
+Route.get('/', async (ctx) => {
+  return ctx.view.render('welcome')
+})
+*/
+
+Route.get('/', async ({view}) => {
   return view.render('welcome')
+})
+
+Route.get('/about', async () => {
+  return "This is the About page"
+})
+
+Route.get('/contact', async () => {
+  return "This is the Contact page"
+})
+
+Route.get('/user/:name', async ({params}) => {
+  return `This is ${params.name}'s courses page`
+})
+
+Route.get('/courses/:name?', async ({params}) => {
+  return params.name ? `This is the ${params.name} courses page`: `This is the courses page`
 })
